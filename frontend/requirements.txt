@@ -2,8 +2,11 @@ streamlit
 requests
 pandas
 numpy
-plotly
+joblib
+shap
 matplotlib
 seaborn
-shap
+plotly
 reportlab
+scikit-learn
+scipy
