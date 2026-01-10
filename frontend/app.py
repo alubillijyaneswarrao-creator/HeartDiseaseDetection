@@ -14,6 +14,12 @@ from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from io import BytesIO
 
+def generate_ecg(heart_rate):
+    t = np.linspace(0, 1, 500)
+    ecg = np.sin(2 * np.pi * heart_rate / 60 * t) * np.exp(-t * 3)
+    ecg += 0.05 * np.random.randn(len(t))
+    return t, ecg
+
 
 # ===============================
 # LOAD SHAP FILES (DEPLOYMENT SAFE)
@@ -465,6 +471,7 @@ with tab4:
         shap.plots.waterfall(shap_local, show=False)
         st.pyplot(fig2)
 st.caption("⚠️ This tool is for decision support only and not a medical diagnosis.")
+
 
 
 
