@@ -176,7 +176,7 @@ result = {}
 
 with st.spinner("🔄 Analyzing patient vitals..."):
     try:
-        response = requests.post("http://127.0.0.1:8000/predict", json=payload)
+        response = requests.post("https://heartdiseasedetection-njhi.onrender.com/predict", json=payload)
         result = response.json()
         prediction = result.get("prediction")
         probability = result.get("probability")
@@ -460,3 +460,4 @@ with tab4:
         shap.plots.waterfall(shap_local, show=False)
         st.pyplot(fig2)
 st.caption("⚠️ This tool is for decision support only and not a medical diagnosis.")
+
