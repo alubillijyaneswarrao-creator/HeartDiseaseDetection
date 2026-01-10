@@ -4,30 +4,35 @@ import pandas as pd
 import numpy as np
 import joblib
 import shap
+import os
 
 import matplotlib.pyplot as plt
 import seaborn as sns
-
 import plotly.express as px
 import plotly.graph_objects as go
-
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from io import BytesIO
-# ===============================
-# CONFIG
-# ===============================
-def generate_ecg(heart_rate):
-    t = np.linspace(0, 1, 500)
-    ecg = np.sin(2 * np.pi * heart_rate / 60 * t) * np.exp(-t * 3)
-    ecg += 0.05 * np.random.randn(len(t))
-    return t, ecg
+
 
 # ===============================
-# 🌈 CUSTOM UI THEME & ANIMATIONS
+# LOAD SHAP FILES (DEPLOYMENT SAFE)
 # ===============================
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.abspath(os.path.join(BASE_DIR, ".."))
 
-   
+shap_values_global = joblib.load(
+    os.path.join(ROOT_DIR, "shap_explainer", "shap_values.pkl")
+)
+
+shap_feature_names = joblib.load(
+    os.path.join(ROOT_DIR, "shap_explainer", "shap_feature_names.pkl")
+)
+
+
+# ===============================
+# PAGE CONFIG
+# ===============================
 st.set_page_config(
     page_title="Heart Disease Dashboard",
     page_icon="❤️",
@@ -460,5 +465,6 @@ with tab4:
         shap.plots.waterfall(shap_local, show=False)
         st.pyplot(fig2)
 st.caption("⚠️ This tool is for decision support only and not a medical diagnosis.")
+
 
 
