@@ -120,8 +120,8 @@ else:
 # ===============================
 # Load precomputed SHAP values
 # ===============================
-shap_values_global = joblib.load("../shap_explainer/shap_values.pkl")
-shap_feature_names = joblib.load("../shap_explainer/shap_feature_names.pkl")
+shap_values_global = joblib.load("shap_explainer/shap_values.pkl")
+shap_feature_names = joblib.load("shap_explainer/shap_feature_names.pkl")
 
 st.title("🫀 Heart Disease Prediction Dashboard")
 st.caption("Interactive ML-based medical decision support system")
@@ -460,4 +460,5 @@ with tab4:
         shap.plots.waterfall(shap_local, show=False)
         st.pyplot(fig2)
 st.caption("⚠️ This tool is for decision support only and not a medical diagnosis.")
+
 
