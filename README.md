@@ -116,6 +116,5 @@ Health analytics platforms
 
 AI explainability demonstrations
 
-⚙️ Installation & Local Setup
-git clone https://github.com/alubillijyaneswarrao-creator/HeartDiseaseDetection.git
-cd HeartDiseaseDetection
+
+
